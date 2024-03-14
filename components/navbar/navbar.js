@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { getServerSession } from "next-auth";
 
-const Navbar = () => {
+const Navbar = async () => {
+    const session = await getServerSession();
+
     return (
         <div style={{ margin: '40px' }}>
             <ul style={{ display: 'flex', justifyContent: 'center', gap: '30px', listStyle: 'none', fontSize: '20px' }}>
@@ -9,16 +12,16 @@ const Navbar = () => {
                         Products
                     </Link>    
                 </li>
-                <li>
+                {!session && <li>
                     <Link href="/login">
                         Login
                     </Link>
-                </li>
-                <li>
+                </li>}
+                {session && <li>
                     <Link href="/profile">
                         Profile
                     </Link>
-                </li>
+                </li>}
             </ul>
         </div>
     );

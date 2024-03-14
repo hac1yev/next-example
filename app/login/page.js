@@ -1,13 +1,15 @@
-import Link from "next/link";
+import Form from "@/components/login/form";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-const Login = () => {
+const Login = async () => {
+    const session = await getServerSession();
+    if(session){
+        redirect('/');
+    };
+
     return (
-        <form>
-            <input type="text" name="username" placeholder="Username" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <button>Login</button>
-            <Link href="/signup">Sign Up</Link>
-        </form>
+        <Form />
     );
 };
 

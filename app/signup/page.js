@@ -1,12 +1,15 @@
-import { signUpHandler } from "@/lib/actions";
+import Form from "@/components/register/form";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-const SignUpPage = () => {
+const SignUpPage = async () => {
+    const session = await getServerSession();
+    if(session){
+        redirect('/');
+    };
+
     return (
-        <form action={signUpHandler}>
-            <input type="text" name="username" placeholder="Username" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <button>Register</button>
-        </form>
+        <Form />
     );
 };
 
