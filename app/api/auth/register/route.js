@@ -6,7 +6,6 @@ import { User } from "@/lib/models";
 export async function POST(request) {
     try {
         const { username, password } = await request.json();
-        console.log({ username, password });
 
         const hashedPassword = await hash(password, 10);
 

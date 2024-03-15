@@ -1,6 +1,11 @@
 "use client"
 
+import { useRouter } from "next/navigation";
+
+
 const Form = () => {
+    const router = useRouter();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -12,6 +17,8 @@ const Form = () => {
                 password: formData.get("password")
             }),
         });
+
+        router.push('/login');
     };
 
     return (

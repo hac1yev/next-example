@@ -1,7 +1,17 @@
+import { fetchFavProducts } from "@/lib/data";
 
-const FavoritesPage = () => {
+const FavoritesPage = async () => {
+    const favProducts = await fetchFavProducts();
+
     return (
-        <div>FavoritesPage</div>
+        <>
+            {favProducts.favorites.map(favorite => (
+                <div key={favorite._id}>
+                    <h4>Product name: {favorite.title}</h4>
+                    <p>Product price: {favorite.price}$</p>
+                </div>
+            ))}
+        </>
     );
 };
 
